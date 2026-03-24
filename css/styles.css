@@ -255,6 +255,23 @@ ul { list-style: none; }
   color: var(--accent);
 }
 
+/* ── BANDA FOTOS ── */
+.banda-fotos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  height: 380px;
+}
+
+.banda-fotos__item { overflow: hidden; }
+.banda-fotos__item img {
+  transition: transform 0.6s ease;
+  filter: brightness(0.92);
+}
+.banda-fotos__item:hover img {
+  transform: scale(1.04);
+  filter: brightness(1);
+}
+
 /* ── HORARIO ── */
 .horario__grid {
   display: grid;
@@ -388,6 +405,12 @@ ul { list-style: none; }
   .nav__toggle { display: flex; }
 
   .section { padding: 64px 0; }
+
+  .banda-fotos {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+  .banda-fotos__item { height: 240px; }
 
   .footer__inner { justify-content: center; text-align: center; flex-direction: column; }
 }
