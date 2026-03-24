@@ -1,0 +1,425 @@
+/* ============================================================
+   Lo de Juan — Delicatessen · Donostia
+   ============================================================ */
+
+/* ── Variables ── */
+:root {
+  --cream:    #FAF7F2;
+  --brown:    #2C1810;
+  --accent:   #8B4513;
+  --gold:     #C9A84C;
+  --dark:     #1A1108;
+  --gray:     #6B6056;
+  --border:   #E8DDD0;
+
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans:  'Inter', system-ui, sans-serif;
+
+  --nav-h: 72px;
+  --container: 1100px;
+  --radius: 4px;
+}
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  font-family: var(--font-sans);
+  color: var(--brown);
+  background: var(--cream);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { display: block; width: 100%; height: 100%; object-fit: cover; }
+a  { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+
+/* ── Helpers ── */
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section { padding: 96px 0; }
+.section--dark  { background: var(--brown); }
+.section--cream { background: #F2ECE3; }
+
+.section__label {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+.section__label--light { color: var(--gold); }
+
+.section__title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 24px;
+}
+.section__title--light { color: var(--cream); }
+
+/* ── Buttons ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  background: var(--gold);
+  color: var(--dark);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 2px solid var(--gold);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.btn:hover { background: transparent; color: var(--gold); }
+
+.btn--outline {
+  background: transparent;
+  color: var(--brown);
+  border-color: var(--brown);
+}
+.btn--outline:hover { background: var(--brown); color: var(--cream); }
+
+/* ── NAV ── */
+#header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  transition: background 0.3s, box-shadow 0.3s;
+}
+#header.scrolled {
+  background: rgba(250, 247, 242, 0.97);
+  box-shadow: 0 1px 0 var(--border);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--nav-h);
+  padding: 0 32px;
+  max-width: var(--container);
+  margin: 0 auto;
+}
+
+.nav__logo {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--cream);
+  transition: color 0.3s;
+}
+#header.scrolled .nav__logo { color: var(--brown); }
+
+.nav__links {
+  display: flex;
+  gap: 36px;
+}
+.nav__links a {
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(250,247,242,0.85);
+  transition: color 0.2s;
+}
+.nav__links a:hover { color: var(--gold); }
+#header.scrolled .nav__links a { color: var(--gray); }
+#header.scrolled .nav__links a:hover { color: var(--accent); }
+
+.nav__toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+.nav__toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--cream);
+  transition: background 0.3s, transform 0.3s;
+}
+#header.scrolled .nav__toggle span { background: var(--brown); }
+
+/* ── HERO ── */
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(26, 17, 8, 0.45) 0%,
+    rgba(26, 17, 8, 0.6) 100%
+  );
+}
+
+.hero__content {
+  position: relative;
+  z-index: 1;
+  color: var(--cream);
+  padding: 0 24px;
+}
+
+.hero__label {
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+
+.hero__title {
+  font-family: var(--font-serif);
+  font-size: clamp(3.5rem, 10vw, 7rem);
+  font-weight: 600;
+  line-height: 1;
+  margin-bottom: 20px;
+  letter-spacing: -0.01em;
+}
+
+.hero__sub {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-weight: 300;
+  color: rgba(250,247,242,0.85);
+  margin-bottom: 40px;
+  font-style: italic;
+  font-family: var(--font-serif);
+}
+
+/* ── NOSOTROS ── */
+.nosotros__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.nosotros__img {
+  height: 520px;
+  overflow: hidden;
+}
+.nosotros__img img {
+  transition: transform 0.6s ease;
+}
+.nosotros__img:hover img { transform: scale(1.03); }
+
+.nosotros__text p {
+  color: var(--gray);
+  margin-bottom: 16px;
+  font-size: 1.05rem;
+}
+
+.nosotros__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 32px;
+}
+.nosotros__badges span {
+  padding: 6px 16px;
+  border: 1px solid var(--border);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* ── GALERÍA ── */
+.galeria__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 340px 340px;
+  gap: 12px;
+  margin-top: 48px;
+}
+
+.galeria__item { overflow: hidden; }
+.galeria__item img {
+  transition: transform 0.5s ease, filter 0.5s ease;
+  filter: brightness(0.88);
+}
+.galeria__item:hover img {
+  transform: scale(1.05);
+  filter: brightness(1);
+}
+
+/* ── HORARIO ── */
+.horario__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.horario__text p {
+  color: var(--gray);
+  margin-bottom: 32px;
+  font-size: 1.05rem;
+}
+
+.horario__tabla {
+  border-top: 1px solid var(--border);
+}
+
+.horario__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+  gap: 16px;
+}
+
+.horario__dia {
+  font-weight: 500;
+  font-size: 0.95rem;
+  min-width: 110px;
+}
+
+.horario__horas {
+  color: var(--gray);
+  font-size: 0.9rem;
+  text-align: right;
+}
+
+/* ── CONTACTO ── */
+.contacto__grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 64px;
+  align-items: start;
+}
+
+.contacto__list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 36px;
+}
+
+.contacto__list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  font-size: 0.98rem;
+  color: var(--gray);
+}
+.contacto__list svg { flex-shrink: 0; margin-top: 3px; color: var(--accent); }
+.contacto__list a:hover { color: var(--accent); }
+
+.contacto__mapa {
+  height: 380px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.contacto__mapa iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* ── FOOTER ── */
+.footer {
+  background: var(--dark);
+  padding: 40px 0;
+}
+.footer__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.footer__logo {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  color: var(--cream);
+}
+.footer__copy {
+  font-size: 0.8rem;
+  color: rgba(250,247,242,0.4);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .nosotros__grid,
+  .horario__grid,
+  .contacto__grid { grid-template-columns: 1fr; gap: 48px; }
+
+  .nosotros__img { height: 320px; }
+
+  .galeria__grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 260px 260px;
+  }
+
+  .contacto__mapa { height: 280px; }
+}
+
+@media (max-width: 640px) {
+  .nav__links { display: none; }
+  .nav__links.open {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    inset: var(--nav-h) 0 0 0;
+    background: var(--cream);
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    z-index: 99;
+  }
+  .nav__links.open a { color: var(--brown); font-size: 1.1rem; }
+  .nav__toggle { display: flex; }
+
+  .section { padding: 64px 0; }
+
+  .galeria__grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+  .galeria__grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, 220px);
+  }
+
+  .footer__inner { justify-content: center; text-align: center; flex-direction: column; }
+}
